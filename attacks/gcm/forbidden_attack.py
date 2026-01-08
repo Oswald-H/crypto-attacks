@@ -11,13 +11,13 @@ def _to_gf2e(n):
 
 # Converts a gf2e element to an integer, little endian.
 def _from_gf2e(p):
-    n = p.integer_representation()
-    ans = 0
+    n = 0
+    polynomial = p.polynomial()
     for i in range(128):
-        ans <<= 1
-        ans |= ((n >> i) & 1)
+        n <<= 1
+        n |= int(polynomial[i])
 
-    return ans
+    return n
 
 
 # Calculates the GHASH polynomial.
